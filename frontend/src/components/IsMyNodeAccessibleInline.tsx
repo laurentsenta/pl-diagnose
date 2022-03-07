@@ -30,6 +30,8 @@ export const IsMyNodeAccessibleInline: React.FC = () => {
     data?.parseAddressError ||
     data?.pingError;
 
+  const rawData = { error: mutation.error, data: mutation.data };
+
   return (
     <div className="block">
       <div className="block my-4">
@@ -54,7 +56,12 @@ export const IsMyNodeAccessibleInline: React.FC = () => {
           success={!!data}
         />
         {error && (
-          <Message failure title="An error occured">
+          <Message
+            failure
+            title="An error occured"
+            rawData={rawData}
+            issueRef="node availability"
+          >
             <div className="content">
               <p>
                 The backend couldn't reach out to your node. It failed with the
@@ -75,7 +82,12 @@ export const IsMyNodeAccessibleInline: React.FC = () => {
         )}
         {!error && data && (
           <>
-            <Message success title="">
+            <Message
+              success
+              title=""
+              rawData={rawData}
+              issueRef="node availability"
+            >
               <div className="content">
                 <p>
                   The backend was able to reach out to the node {data.id} in{" "}

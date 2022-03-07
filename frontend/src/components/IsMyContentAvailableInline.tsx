@@ -8,7 +8,7 @@ import { ResultTitle } from "./ResultTitle";
 import { Tooltip } from "./Tooltip";
 
 export const IsMyContentAvailableInline: React.FC = () => {
-  const { params, setAddr } = useCommonParams();
+  const { params } = useCommonParams();
   const mutation = useMutation(fetchFindCIDInDHT);
   const canSubmit = isValidCIDParams(params) && !mutation.isLoading;
 
@@ -29,6 +29,8 @@ export const IsMyContentAvailableInline: React.FC = () => {
     mutation.data?.findProvidersError;
 
   const data = error ? undefined : mutation.data?.providers;
+
+  const rawData = { error: mutation.error, data: mutation.data };
 
   return (
     <div className="block">
@@ -55,15 +57,16 @@ export const IsMyContentAvailableInline: React.FC = () => {
         />
         {error && (
           <Message
-            rawData={{ error: mutation.error, data: mutation.data }}
             failure
             title="The request failed"
             content={`${error}`}
+            rawData={rawData}
+            issueRef="content availability"
           />
         )}
         {data && (
           <>
-            <Message success>
+            <Message success rawData={rawData} issueRef="content availability">
               <p>Our backend found {data.length} providers for this CID.</p>
             </Message>
             <h3 className="title is-5">

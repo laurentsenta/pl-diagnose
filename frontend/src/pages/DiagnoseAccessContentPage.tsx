@@ -7,43 +7,6 @@ import { IsMyNodeServingContentInline } from "components/IsMyNodeServingContentI
 import last from "lodash-es/last";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const useScrollPosition = () => {
-  const [y, setY] = useState(0);
-  const handleScroll = () => {
-    const position = window.pageYOffset;
-    setY(position);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  return y;
-};
-
-const TitleWithRef: React.FC<{
-  setRef: (id: number, e: HTMLElement | null) => void;
-  id: number;
-  className: string;
-}> = ({ setRef, id, children, ...props }) => {
-  const cb = useCallback(
-    (e: HTMLElement | null) => {
-      setRef(id, e);
-    },
-    [setRef, id]
-  );
-
-  return (
-    <h1 ref={cb} {...props}>
-      {children}
-    </h1>
-  );
-};
-
 const Content: React.FC<{
   setRef: (id: number, e: HTMLElement | null) => void;
 }> = ({ setRef }) => {
@@ -254,5 +217,42 @@ export const DiagnoseAccessContentPage: React.FC = () => {
         <Content setRef={setRef} />
       </div>
     </div>
+  );
+};
+
+const useScrollPosition = () => {
+  const [y, setY] = useState(0);
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    setY(position);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return y;
+};
+
+const TitleWithRef: React.FC<{
+  setRef: (id: number, e: HTMLElement | null) => void;
+  id: number;
+  className: string;
+}> = ({ setRef, id, children, ...props }) => {
+  const cb = useCallback(
+    (e: HTMLElement | null) => {
+      setRef(id, e);
+    },
+    [setRef, id]
+  );
+
+  return (
+    <h1 ref={cb} {...props}>
+      {children}
+    </h1>
   );
 };

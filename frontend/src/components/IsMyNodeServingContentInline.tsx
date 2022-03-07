@@ -28,6 +28,8 @@ export const IsMyNodeServingContentInline: React.FC = () => {
     data?.parseCIDError ||
     data?.getBlockError;
 
+  const rawData = { error: mutation.error, data: mutation.data };
+
   return (
     <div className="block">
       <div className="block my-4">
@@ -52,11 +54,17 @@ export const IsMyNodeServingContentInline: React.FC = () => {
             failure
             title="The request failed"
             content={`${error}`}
-            rawData={{ error: mutation.error, data: mutation.data }}
+            rawData={rawData}
+            issueRef="node serving content"
           />
         )}
         {!error && data && (
-          <Message success title="Success" rawData={data}>
+          <Message
+            success
+            title="Success"
+            rawData={rawData}
+            issueRef="node serving content"
+          >
             <p>
               The backend was able to retrieve the bitswap content in{" "}
               {data.durationMS} milliseconds. The payload was{" "}
