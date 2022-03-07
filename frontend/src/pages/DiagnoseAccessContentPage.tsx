@@ -20,14 +20,13 @@ const Content: React.FC<{
           </p>
         </div>
       </section>
-
-      <div className="block">
+      <section className="section">
         <div className="content">
           Ok, you cannot access your content, sorry about that. Let's try to
           find out why.
         </div>
-      </div>
-      <div className="block">
+      </section>
+      <section className="section">
         <div className="content">
           <p>
             First, let's configure the node we are going to use to test
@@ -37,8 +36,8 @@ const Content: React.FC<{
         <div className="" style={{ maxWidth: "600px" }}>
           <BackendURLField />
         </div>
-      </div>
-      <div className="block">
+      </section>
+      <section className="section">
         <TitleWithRef className="title is-3" id={1} setRef={setRef}>
           1. Is my content on the DHT?
         </TitleWithRef>
@@ -59,8 +58,8 @@ const Content: React.FC<{
         <div className="block">
           <IsMyContentAvailableInline />
         </div>
-      </div>
-      <div className="block">
+      </section>
+      <section className="section">
         <TitleWithRef className="title is-3" id={2} setRef={setRef}>
           2. Is my node accessible?
         </TitleWithRef>
@@ -136,8 +135,8 @@ const Content: React.FC<{
         <div className="block">
           <IsMyNodeAccessibleInline />
         </div>
-      </div>
-      <div className="block">
+      </section>
+      <section className="section">
         <TitleWithRef className="title is-3" id={3} setRef={setRef}>
           3. Is my node serving the content?
         </TitleWithRef>
@@ -153,8 +152,7 @@ const Content: React.FC<{
         <div className="block">
           <IsMyNodeServingContentInline />
         </div>
-      </div>
-      <></>
+      </section>
     </>
   );
 };
