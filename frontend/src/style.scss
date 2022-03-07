@@ -1,0 +1,19 @@
+@charset "utf-8";
+@import "../node_modules/bulma/bulma.sass";
+@import "@creativebulma/bulma-tooltip";
+
+html {
+  scroll-behavior: smooth;
+}
+
+.sticky-sidebar {
+  position: sticky;
+  //   display: inline-block;
+  //   vertical-align: top;
+  max-height: 100vh;
+  overflow-y: auto;
+  //   width: 200px;
+  top: 0;
+  padding: 30px;
+  //   height: 20vh;
+}
