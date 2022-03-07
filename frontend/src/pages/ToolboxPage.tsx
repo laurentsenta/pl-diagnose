@@ -1,16 +1,5 @@
-const SUGGEST_NEW_CONTENT_URL =
-  "https://github.com/laurentsenta/pl-ipfs-check/issues/new";
-
-const ExternalLink: React.FC<{ href: string; title: string }> = ({
-  title,
-  href,
-}) => {
-  return (
-    <a href={href} target="_blank" rel="noreferrer noopener">
-      {title}
-    </a>
-  );
-};
+import { ExternalLink } from "components/ExternalLink";
+import { makeIssueURL } from "data/github";
 
 export const ToolboxPage: React.FC = () => {
   return (
@@ -117,7 +106,7 @@ export const ToolboxPage: React.FC = () => {
             <strong>Help us improve this site!</strong>
             <br />
             <ExternalLink
-              href={SUGGEST_NEW_CONTENT_URL}
+              href={makeIssueURL({ title: "[toolbox] add my content" })}
               title="Suggest New Content"
             />
           </p>

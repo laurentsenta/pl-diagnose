@@ -1,3 +1,5 @@
+import { ExternalLink } from "components/ExternalLink";
+import { GITHUB_URL } from "data/github";
 import { Outlet } from "react-router-dom";
 
 export const PageContainer: React.FC = ({ children }) => {
@@ -11,7 +13,7 @@ export const PageContainer: React.FC = ({ children }) => {
           <p>
             <strong>PL Diagnose</strong>
             <br />
-            <a href="https://github.com/laurentsenta/pl-ipfs-check">Github</a>.
+            <ExternalLink href={GITHUB_URL!} title="Github" />.
           </p>
         </div>
       </footer>
