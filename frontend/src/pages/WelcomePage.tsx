@@ -19,9 +19,7 @@ export const WelcomePage: React.FC = () => {
             <div className="tile is-ancestor">
               <div className="tile is-parent is-4">
                 <div className="tile is-child box">
-                  <h2 className="title is-3">
-                    I can't access to my IPFS content
-                  </h2>
+                  <h2 className="title is-3">I can't access my IPFS content</h2>
                   <Link to="/diagnose/access-content">Go here.</Link>
                 </div>
               </div>
