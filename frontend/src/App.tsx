@@ -1,7 +1,7 @@
 import { DiagnoseAccessContentPage } from "pages/DiagnoseAccessContentPage";
-import { IPFSCheckPage } from "pages/IPFSCheckPage";
 import { PageContainer } from "pages/PageContainer";
 import { ToolboxPage } from "pages/ToolboxPage";
+import { WelcomePage } from "pages/WelcomePage";
 import React from "react";
 import { Link, Route, Routes } from "react-router-dom";
 
@@ -26,11 +26,8 @@ const PageHeader: React.FC = () => {
         </a>
       </div>
       <div className="navbar-start">
-        <Link className="navbar-item" to="/">
-          IPFS Check
-        </Link>
         <Link className="navbar-item" to="/diagnose/access-content">
-          Diagnose Access Content
+          Access Content
         </Link>
         <Link className="navbar-item" to="/toolbox">
           Toolbox
@@ -50,7 +47,8 @@ function App() {
       <PageHeader />
       <Routes>
         <Route path="/" element={<PageContainer />}>
-          <Route index element={<IPFSCheckPage />} />
+          <Route index element={<WelcomePage />} />
+          {/* <Route index element={<IPFSCheckPage />} /> */}
           <Route path="/toolbox" element={<ToolboxPage />} />
           <Route
             path="/diagnose/access-content"
