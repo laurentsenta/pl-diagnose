@@ -69,16 +69,18 @@ export const IsMyContentAvailableInline: React.FC = () => {
             <Message success rawData={rawData} issueRef="content availability">
               <p>Our backend found {data.length} providers for this CID.</p>
             </Message>
-            <h3 className="title is-5">
-              Providers:
-              <Tooltip
-                message="These are the providers that we found.&#10;Click on any of their addresses to test them."
-              />
-            </h3>
-            <div className="menu" style={{ maxWidth: "600px" }}>
-              {data.map((peer) => (
-                <ClickablePeerAddrList key={peer.ID} {...peer} />
-              ))}
+            <div className="block mt-3">
+              <h3 className="title is-5">
+                Providers:
+                <Tooltip
+                  message="These are the providers that we found.&#10;Click on any of their addresses to test them."
+                />
+              </h3>
+              <div className="menu" style={{ maxWidth: "600px" }}>
+                {data.map((peer) => (
+                  <ClickablePeerAddrList key={peer.ID} {...peer} />
+                ))}
+              </div>
             </div>
           </>
         )}

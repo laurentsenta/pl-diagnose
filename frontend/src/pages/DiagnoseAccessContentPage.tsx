@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { ButtonWithModal } from "components/ButtonWithModal";
 import { AddrField, BackendURLField, CIDField } from "components/CommonFields";
+import { ExternalLink } from "components/ExternalLink";
 import { IsMyContentAvailableInline } from "components/IsMyContentAvailableInline";
 import { IsMyNodeAccessibleInline } from "components/IsMyNodeAccessibleInline";
 import { IsMyNodeServingContentInline } from "components/IsMyNodeServingContentInline";
@@ -15,22 +16,34 @@ const Content: React.FC<{
       <section className="hero">
         <div className="hero-body">
           <h1 className="title is-size-1">I can't access my content</h1>
-          <p className="subtitle">
+          <h2 className="subtitle">
             Diagnose issues with your libp2p / ipfs stack.
+          </h2>
+          <p className="content">
+            When you cannot access your content via the IPFS network, this tool
+            will help you figure out what is happening and how to fix it.
           </p>
         </div>
       </section>
       <section className="section">
         <div className="content">
-          Ok, you cannot access your content, sorry about that. Let's try to
-          find out why.
-        </div>
-      </section>
-      <section className="section">
-        <div className="content">
           <p>
-            First, let's configure the node we are going to use to test
-            accessibility. To be described. Don't worry much about this.
+            First, let's configure the server we are going to use to test
+            reachability.
+          </p>
+          <p>
+            <strong>What is this?</strong>
+          </p>
+          <p>
+            The IPFS stack relies on peer-to-peer technologies. There is no
+            central source of truth, so it is likely that a piece of content
+            lives on a node that is not accessible by other members of the
+            network. It might work on your local, private network, but other
+            users might not be able to reach out to you.
+          </p>
+          <p>
+            This URL is the server that will be used to talk to the network. By
+            default it points to a server on the internet.
           </p>
         </div>
         <div className="" style={{ maxWidth: "600px" }}>
@@ -43,13 +56,22 @@ const Content: React.FC<{
         </TitleWithRef>
         <div className="content">
           <p>
-            First we need to make sure your content is accessible on the DHT.
-            (ref needed). So starting from the backend server we are going to
-            request the DHT and make sure your content can be discovered.
+            Before retrieving a piece of content, we need to make sure it is
+            accessible on the DHT.
           </p>
           <p>
-            Enter your content's CID below, hopefully the backend will find some
-            peers advertising this content.
+            <strong>What is this?</strong>
+          </p>
+          <p>
+            IPFS, through libp2p, provides an infrastructure for content routing
+            and peer routing. This is how a node discovers the address of other
+            nodes in the network. And this is also how a node find content on
+            the network.
+          </p>
+          <p>
+            Enter your content's CID below. On submit, the backend server will
+            request the DHT and try to find your content. Hopefully the backend
+            will find some peers advertising your content.
           </p>
         </div>
         <div className="" style={{ maxWidth: "600px" }}>
@@ -65,12 +87,16 @@ const Content: React.FC<{
         </TitleWithRef>
         <div className="content">
           <p>
-            Now we need to make sure that nodes serving your content can be
-            reached.
+            If a node is advertising your content on the DHT we need to make
+            sure it is possible to connect to it.
           </p>
           <p>
-            Enter your node's address below, hopefully the backend will be able
-            to reach out to it.
+            <strong>What is this?</strong>
+          </p>
+          <p>TBD.</p>
+          <p>
+            Enter your node's address below. On submit, the backend server will
+            try to connect and identify the node.
           </p>
           <ButtonWithModal title="Where do I find my multiaddr?">
             <section className="content">
@@ -92,8 +118,12 @@ const Content: React.FC<{
                   <ul>
                     <li>
                       Open the IPFS WebUI "Status" page via the IPFS Desktop
-                      menu or by visiting "http://127.0.0.1:5001/webui" (when
-                      using the default config settings)
+                      menu or by visiting{" "}
+                      <ExternalLink
+                        href="http://127.0.0.1:5001/webui"
+                        title="http://127.0.0.1:5001/webui"
+                      />{" "}
+                      (when using the default config settings)
                     </li>
                     <li>
                       If you want to test your peerID rather than a particular

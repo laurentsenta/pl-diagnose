@@ -3,6 +3,7 @@ import { useCommonParams } from "data/useCommonParams";
 import { FormEventHandler, useCallback } from "react";
 import { useMutation } from "react-query";
 import { ClickablePeerAddrList } from "./ClickablePeerAddrList";
+import { ExternalLink } from "./ExternalLink";
 import { Message } from "./Message";
 import { ResultTitle } from "./ResultTitle";
 
@@ -69,11 +70,22 @@ export const IsMyNodeAccessibleInline: React.FC = () => {
                 <strong>{`${error}`}</strong>
               </p>
               <p>
-                Tips to fix it:
+                If the backend node cannot connect to your nodes, other peers
+                might not be able to connect and retrieve your content either.
+                This is the web3 equivalent of a{" "}
+                <em>"DNS address could not be found"</em> error.
+              </p>
+              <p>
+                Tips to fix this issue:
                 <ul>
+                  <li>Can you ping your node from the outside?</li>
                   <li>
-                    check that the node can be reached from the outside. [SEE
-                    NAT Configuration]
+                    Do you need{" "}
+                    <ExternalLink
+                      title="NAT Configuration"
+                      href="https://docs.ipfs.io/how-to/nat-configuration/"
+                    />
+                    ?
                   </li>
                 </ul>
               </p>

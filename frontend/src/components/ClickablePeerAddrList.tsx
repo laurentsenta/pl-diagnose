@@ -11,7 +11,10 @@ export const ClickablePeerAddrList: React.FC<{
     <>
       <p className="menu-label">Peer: {ID}</p>
       {Addrs && Addrs.length === 0 && (
-        <p>(No advertised addresses, we can't connect)</p>
+        <p className="is-italic	has-text-grey">
+          It looks like this peer doesn't advertise their address. We don't know
+          how to connect to this peer
+        </p>
       )}
       {Addrs && Addrs.length > 0 && (
         <ul className="menu-list">

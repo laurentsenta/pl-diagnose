@@ -1,5 +1,23 @@
 import { makeIssueURL } from "data/github";
+import { useCallback, useState } from "react";
 import { ExternalLink } from "./ExternalLink";
+
+const useTextContent = (
+  initial: string
+): [React.LegacyRef<HTMLElement>, string] => {
+  const [text, setText] = useState(initial);
+
+  const ref = useCallback(
+    (node: HTMLElement) => {
+      if (node && node.textContent) {
+        setText(node.textContent);
+      }
+    },
+    [setText]
+  );
+
+  return [ref, text];
+};
 
 export const Message: React.FC<{
   title?: string;
@@ -11,10 +29,11 @@ export const Message: React.FC<{
 }> = ({ title, content, children, success, failure, issueRef, rawData }) => {
   const status = success ? "is-success" : "is-warning";
   const hasMore = content || children;
+  const [ref, text] = useTextContent("");
 
   return (
     <>
-      <article className={`notification ${status}`}>
+      <article className={`notification ${status}`} ref={ref}>
         {title && (
           <div className="header">
             <p>{title}</p>
@@ -29,26 +48,28 @@ export const Message: React.FC<{
       </article>
       {
         <p>
-          Need help with this result? Ask for help on{" "}
+          ❓ Need help with this result? Ask for help on{" "}
           <ExternalLink
             href={makeIssueURL({
               title: `[help] I need help with ${issueRef || "a result"}`,
               body: `
-## Issue
-
 - [ ] what I tried to do: ...
 - [ ] url of the page: ${window.location}
 - [ ] what I got: 
 
-> ${content}
+> ${text.split("\n").join("\n> ")}
 
-- [ ] what am I missing: ...
+- [ ] I don't have enough information to fix my issue because: ...
 
 ## Details:
 
 - title: ${title}
 - issueRef: ${issueRef}
-- rawData: ${JSON.stringify(rawData)}
+- rawData: 
+
+\`\`\`json
+${JSON.stringify(rawData, undefined, 2)}
+\`\`\`
             `,
             })}
             title="github"
