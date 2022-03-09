@@ -73,8 +73,8 @@ export const IsMyNodeAccessibleInline: React.FC = () => {
               data?.connectToPeerError === "no addresses" ? (
                 <>
                   <p>
-                    This multiaddresses doesn't containt a location, we only
-                    support address with location right now.
+                    This multiaddress doens't have a location listed, please
+                    enter an IP address:
                   </p>
                   <p>
                     Use the tool above to find your node's address,{" "}
@@ -94,23 +94,23 @@ export const IsMyNodeAccessibleInline: React.FC = () => {
               ) : (
                 <>
                   <p>
-                    If the backend node cannot connect to your nodes, other
-                    peers might not be able to connect and retrieve your content
-                    either. This is the web3 equivalent of a{" "}
-                    <em>"DNS address could not be found"</em> error.
+                    This address might not be listed in the DHT, this is
+                    equivalent to a<em>"DNS address could not be found"</em>{" "}
+                    error.
                   </p>
                   <p>
-                    Tips to fix this issue:
+                    Troubleshooting Steps:
                     <ul>
-                      <li>Can you ping your node from the outside?</li>
-                      <li>
-                        Do you need{" "}
-                        <ExternalLink
-                          title="NAT Configuration"
-                          href="https://docs.ipfs.io/how-to/nat-configuration/"
-                        />
-                        ?
-                      </li>
+                      <li>Solution 1</li>
+                      <ol>
+                        <li>solution 1 step A</li>
+                        <li>solution 1 step B</li>
+                      </ol>
+                      <li>Solution 2</li>
+                      <ol>
+                        <li>solution 2 step A</li>
+                        <li>solution 2 step B</li>
+                      </ol>
                     </ul>
                   </p>
                 </>
