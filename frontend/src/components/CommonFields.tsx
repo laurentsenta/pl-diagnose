@@ -51,7 +51,7 @@ export const AddrField: React.FC = () => {
   return (
     <div className="field">
       <label className="label">
-        MultiAddress <TooltipMultiaddr />
+        Network or Multi- Address <TooltipMultiaddr />
       </label>
       <div className="control">
         <input
