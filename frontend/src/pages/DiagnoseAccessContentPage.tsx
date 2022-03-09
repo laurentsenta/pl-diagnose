@@ -80,7 +80,7 @@ const Content: React.FC<{
     <>
       <section className="hero">
         <div className="hero-body">
-          <h1 className="title is-size-1">I can't access my content</h1>
+          <h1 className="title is-size-1">Access Content Checks</h1>
           <h2 className="subtitle">
             Diagnose issues with your libp2p / ipfs stack.
           </h2>
@@ -114,10 +114,10 @@ const Content: React.FC<{
               <a href="http://multiformats.io.ipns.localhost:8080/multiaddr/">
                 Multiaddresses
               </a>{" "}
-              are listed in the DHT for a given IPFS Node
+              are listed in the DHT for a given IPFS Node?
             </li>
-            <li>Is an IPFS node accessible by other peers</li>
-            <li>Is certain content available from an IPFS node</li>
+            <li>Is an IPFS node accessible by other peers?</li>
+            <li>Is certain content available from an IPFS node?</li>
           </ol>
         </div>
         <div className="" style={{ maxWidth: "600px" }}>
