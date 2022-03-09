@@ -99,10 +99,7 @@ const Content: React.FC<{
               <a href="http://docs.ipfs.io.ipns.localhost:8080/concepts/content-addressing/">
                 CID
               </a>{" "}
-              available on the IPFS network?
-            </li>
-            <li>
-              Which{" "}
+              available on the IPFS network, and which{" "}
               <a href="http://docs.ipfs.io.ipns.localhost:8080/concepts/glossary/#peer-id">
                 PeerIds
               </a>{" "}
@@ -110,7 +107,10 @@ const Content: React.FC<{
               <a href="http://docs.ipfs.io.ipns.localhost:8080/concepts/dht/#distributed-hash-tables-dhts">
                 DHT
               </a>{" "}
-              list as hosts, and which network addresses or{" "}
+              list as hosts,?
+            </li>
+            <li>
+              Which network addresses or{" "}
               <a href="http://multiformats.io.ipns.localhost:8080/multiaddr/">
                 Multiaddresses
               </a>{" "}
