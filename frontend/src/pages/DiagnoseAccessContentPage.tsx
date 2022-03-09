@@ -4,9 +4,74 @@ import { AddrField, BackendURLField, CIDField } from "components/CommonFields";
 import { ExternalLink } from "components/ExternalLink";
 import { IsMyContentAvailableInline } from "components/IsMyContentAvailableInline";
 import { IsMyNodeAccessibleInline } from "components/IsMyNodeAccessibleInline";
+import { IsMyNodeOnTheDHTInline } from "components/IsMyNodeOnTheDHTInline";
 import { IsMyNodeServingContentInline } from "components/IsMyNodeServingContentInline";
 import last from "lodash-es/last";
 import { useCallback, useEffect, useRef, useState } from "react";
+
+const WhereDoIFindMyMultiaddress: React.FC = () => {
+  return (
+    <ButtonWithModal title="Where do I find my multiaddr?">
+      <section className="content">
+        <h2 className="">Where do I find my multiaddr?</h2>
+        <ul>
+          <li className="">
+            <strong>Using This tool</strong>
+            <ul>
+              <li>
+                Run the "Is my content on the DHT?" test and click on any of the
+                provider's addresses
+              </li>
+              <li>
+                Run the "Is my node accessible?" test and click on any of the
+                node advertised addresses
+              </li>
+            </ul>
+            <strong>Using IPFS Desktop or IPFS WebUI</strong>
+            <ul>
+              <li>
+                Open the IPFS WebUI "Status" page via the IPFS Desktop menu or
+                by visiting{" "}
+                <ExternalLink
+                  href="http://127.0.0.1:5001/webui"
+                  title="http://127.0.0.1:5001/webui"
+                />{" "}
+                (when using the default config settings)
+              </li>
+              <li>
+                If you want to test your peerID rather than a particular address
+                enter{" "}
+                <code>
+                  /p2p/{"{"}YourPeerID{"}"}
+                </code>
+              </li>
+              <li>
+                If you want to test a particular address then click the
+                "Advanced" dropdown to see the node's addresses
+              </li>
+            </ul>
+          </li>
+          <li className="">
+            <strong>Using the go-ipfs CLI</strong>
+            <ul>
+              <li>
+                If you want to test your peerID rather than a particular address
+                run <code>ipfs id</code> and enter{" "}
+                <code>
+                  /p2p/{"{"}YourPeerID{"}"}
+                </code>
+              </li>
+              <li>
+                If you want to test a particular address then choose an entry
+                from the list of addresses output by <code>ipfs id</code>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </ButtonWithModal>
+  );
+};
 
 const Content: React.FC<{
   setRef: (id: number, e: HTMLElement | null) => void;
@@ -83,7 +148,30 @@ const Content: React.FC<{
       </section>
       <section className="section">
         <TitleWithRef className="title is-3" id={2} setRef={setRef}>
-          2. Is my node accessible?
+          2. Is my node in the DHT?
+        </TitleWithRef>
+        <div className="content">
+          <p>TBD</p>
+          <p>
+            <strong>What is this?</strong>
+          </p>
+          <p>TBD.</p>
+          <p>
+            Enter your node's p2p address below. On submit, the backend server
+            will try to find your node in the DHT.
+          </p>
+          <WhereDoIFindMyMultiaddress />
+        </div>
+        <div className="" style={{ maxWidth: "600px" }}>
+          <AddrField />
+        </div>
+        <div className="block">
+          <IsMyNodeOnTheDHTInline />
+        </div>
+      </section>
+      <section className="section">
+        <TitleWithRef className="title is-3" id={3} setRef={setRef}>
+          3. Is my node accessible?
         </TitleWithRef>
         <div className="content">
           <p>
@@ -98,66 +186,7 @@ const Content: React.FC<{
             Enter your node's address below. On submit, the backend server will
             try to connect and identify the node.
           </p>
-          <ButtonWithModal title="Where do I find my multiaddr?">
-            <section className="content">
-              <h2 className="">Where do I find my multiaddr?</h2>
-              <ul>
-                <li className="">
-                  <strong>Using This tool</strong>
-                  <ul>
-                    <li>
-                      Run the "Is my content on the DHT?" test and click on any
-                      of the provider's addresses
-                    </li>
-                    <li>
-                      Run the "Is my node accessible?" test and click on any of
-                      the node advertised addresses
-                    </li>
-                  </ul>
-                  <strong>Using IPFS Desktop or IPFS WebUI</strong>
-                  <ul>
-                    <li>
-                      Open the IPFS WebUI "Status" page via the IPFS Desktop
-                      menu or by visiting{" "}
-                      <ExternalLink
-                        href="http://127.0.0.1:5001/webui"
-                        title="http://127.0.0.1:5001/webui"
-                      />{" "}
-                      (when using the default config settings)
-                    </li>
-                    <li>
-                      If you want to test your peerID rather than a particular
-                      address enter{" "}
-                      <code>
-                        /p2p/{"{"}YourPeerID{"}"}
-                      </code>
-                    </li>
-                    <li>
-                      If you want to test a particular address then click the
-                      "Advanced" dropdown to see the node's addresses
-                    </li>
-                  </ul>
-                </li>
-                <li className="">
-                  <strong>Using the go-ipfs CLI</strong>
-                  <ul>
-                    <li>
-                      If you want to test your peerID rather than a particular
-                      address run <code>ipfs id</code> and enter{" "}
-                      <code>
-                        /p2p/{"{"}YourPeerID{"}"}
-                      </code>
-                    </li>
-                    <li>
-                      If you want to test a particular address then choose an
-                      entry from the list of addresses output by{" "}
-                      <code>ipfs id</code>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </section>
-          </ButtonWithModal>
+          <WhereDoIFindMyMultiaddress />
         </div>
         <div className="" style={{ maxWidth: "600px" }}>
           <AddrField />
@@ -167,8 +196,8 @@ const Content: React.FC<{
         </div>
       </section>
       <section className="section">
-        <TitleWithRef className="title is-3" id={3} setRef={setRef}>
-          3. Is my node serving the content?
+        <TitleWithRef className="title is-3" id={4} setRef={setRef}>
+          4. Is my node serving the content?
         </TitleWithRef>
         <div className="content">
           <p>

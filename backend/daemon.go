@@ -17,6 +17,7 @@ import (
 	kadDHT "github.com/libp2p/go-libp2p-kad-dht"
 	"github.com/libp2p/go-libp2p/p2p/protocol/identify"
 	"github.com/libp2p/go-libp2p/p2p/protocol/ping"
+	"github.com/multiformats/go-multiaddr"
 )
 
 type daemon struct {
@@ -95,7 +96,6 @@ func (d *daemon) runIdentify(ctx context.Context, uristr string) (IdentifyOutput
 	}
 
 	maddr := u.Query().Get("addr")
-
 	if maddr == "" {
 		return out, errors.New("missing argument: addr")
 	}
@@ -189,6 +189,57 @@ func (d *daemon) runIdentify(ctx context.Context, uristr string) (IdentifyOutput
 type Provider struct {
 	Id    string   `json:"id"`
 	Addrs []string `json:"addresses"`
+}
+
+type FindPeerOutput struct {
+	ID                peer.ID               `json:"id,omitempty"`
+	ParseAddressError string                `json:"parseAddressError,omitempty"`
+	FindPeerError     string                `json:"findPeerError,omitempty"`
+	Addresses         []multiaddr.Multiaddr `json:"addresses,omitempty"`
+}
+
+func (d *daemon) runFindPeer(ctx context.Context, uristr string) (FindPeerOutput, error) {
+	out := FindPeerOutput{}
+
+	u, err := url.ParseRequestURI(uristr)
+	if err != nil {
+		return out, err
+	}
+
+	maddr := u.Query().Get("addr")
+	if maddr == "" {
+		return out, errors.New("missing argument: addr")
+	}
+
+	ai, err := peer.AddrInfoFromString(maddr)
+
+	if err != nil {
+		out.ParseAddressError = err.Error()
+		return out, nil
+	}
+
+	out.ID = ai.ID
+
+	e := newEphemeralHost(ctx)
+	defer e.host.Close()
+	defer e.idService.Close()
+
+	// Without this there are no peer when the rest of the code executes
+	// The fullrt implementation provides a Ready() method.
+	time.Sleep(5 * time.Second)
+
+	dialCtx, dialCancel := context.WithTimeout(ctx, 10*time.Second)
+	defer dialCancel()
+
+	addr, err := e.dht.FindPeer(dialCtx, ai.ID)
+	if err != nil {
+		out.FindPeerError = err.Error()
+		return out, nil
+	}
+
+	out.Addresses = addr.Addrs
+
+	return out, nil
 }
 
 type FindContentOutput struct {

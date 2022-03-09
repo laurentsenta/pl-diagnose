@@ -63,6 +63,32 @@ export const fetchNodeIdentify = async (
   throw await r.text();
 };
 
+interface IFindPeerInDHT {
+  id: string;
+  parseAddressError?: string;
+  findPeerError?: string;
+  addresses?: string[];
+}
+
+export const fetchPeerInDHT = async (
+  params: IParamsAddr
+): Promise<IFindPeerInDHT> => {
+  const queryString = `addr=${params.addr}`;
+
+  const url = `${params.backend}/find-peer?${queryString}`;
+
+  const r = await fetch(url, {
+    method: "GET",
+    headers: {},
+  });
+
+  if (r.ok) {
+    return r.json();
+  }
+
+  throw await r.text();
+};
+
 interface IFindCID {
   parseCIDError?: string;
   findProvidersError?: string;

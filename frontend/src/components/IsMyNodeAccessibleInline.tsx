@@ -76,15 +76,20 @@ export const IsMyNodeAccessibleInline: React.FC = () => {
                     This multiaddresses doesn't containt a location, we only
                     support address with location right now.
                   </p>
-                  <ul>
+                  <p>
+                    Use the tool above to find your node's address,{" "}
+                    <strong>or:</strong>
+                  </p>
+                  <ol>
                     <li>
                       Go to your terminal type <code>ipfs id</code>
                     </li>
                     <li>
-                      Find in the list the one address starting with{" "}
+                      Find an address with the location in the list{" "}
+                      <code>Addresses</code>, it would start with{" "}
                       <code>/ip4/....</code>
                     </li>
-                  </ul>
+                  </ol>
                 </>
               ) : (
                 <>

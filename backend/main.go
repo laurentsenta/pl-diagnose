@@ -38,6 +38,11 @@ func main() {
 		outputJSONOrErr(writer, out, err)
 	})
 
+	http.HandleFunc("/find-peer", func(writer http.ResponseWriter, request *http.Request) {
+		out, err := daemon.runFindPeer(request.Context(), request.RequestURI)
+		outputJSONOrErr(writer, out, err)
+	})
+
 	http.HandleFunc("/bitswap", func(writer http.ResponseWriter, request *http.Request) {
 		out, err := daemon.runAccessBitswap(request.Context(), request.RequestURI)
 		outputJSONOrErr(writer, out, err)
