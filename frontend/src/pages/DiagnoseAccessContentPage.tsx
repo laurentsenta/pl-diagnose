@@ -91,7 +91,7 @@ const Content: React.FC<{
         </div>
         <div className="content">
           <p>
-            <strong>What this Tools Can Check</strong>
+            <strong>What These Tools Can Check</strong>
           </p>
           <ol>
             <li>
