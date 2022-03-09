@@ -9,7 +9,7 @@ Check the live version on fleek: https://pl-diagnose.on.fleek.co/
 
 ### Setup
 ```
-yarn install
+cd frontend && yarn install
 ```
 
 ### Frontend
