@@ -91,7 +91,7 @@ const Content: React.FC<{
         </div>
         <div className="content">
           <p>
-            <strong>What this Tools Can Check</strong>
+            <strong>What These Tools Can Check</strong>
           </p>
           <ol>
             <li>
@@ -126,8 +126,11 @@ const Content: React.FC<{
       </section>
       <section className="section">
         <TitleWithRef className="title is-3" id={1} setRef={setRef}>
-          1. Is my content on the DHT?
+          1. Content Check
         </TitleWithRef>
+        <div className="content">
+          <i> Is my content on the DHT?</i>
+        </div>
         <div className="content">
           <p>
             Before retrieving a piece of content, we need to make sure it is
@@ -151,14 +154,12 @@ const Content: React.FC<{
       </section>
       <section className="section">
         <TitleWithRef className="title is-3" id={2} setRef={setRef}>
-          2. Is my node in the DHT?
+          2. Network Address Check
         </TitleWithRef>
         <div className="content">
-          <p>TBD</p>
-          <p>
-            <strong>What is this?</strong>
-          </p>
-          <p>TBD.</p>
+          <i> Is my node in the DHT?</i>
+        </div>
+        <div className="content">
           <p>
             Enter your node's p2p address below. On submit, the backend server
             will try to find your node in the DHT.
@@ -174,17 +175,16 @@ const Content: React.FC<{
       </section>
       <section className="section">
         <TitleWithRef className="title is-3" id={3} setRef={setRef}>
-          3. Is my node accessible?
+          3. Node Access Check
         </TitleWithRef>
+        <div className="content">
+          <i> Is my node accessible by other peers?</i>
+        </div>
         <div className="content">
           <p>
             If a node is advertising your content on the DHT we need to make
             sure it is possible to connect to it.
           </p>
-          <p>
-            <strong>What is this?</strong>
-          </p>
-          <p>TBD.</p>
           <p>
             Enter your node's address below. On submit, the backend server will
             try to connect and identify the node.
@@ -200,8 +200,11 @@ const Content: React.FC<{
       </section>
       <section className="section">
         <TitleWithRef className="title is-3" id={4} setRef={setRef}>
-          4. Is my node serving the content?
+          4. Node-Content Check
         </TitleWithRef>
+        <div className="content">
+          <i>Is my node serving the content?</i>
+        </div>
         <div className="content">
           <p>
             If you're node is accessible and the content is advertised on the
