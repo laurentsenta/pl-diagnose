@@ -69,26 +69,47 @@ export const IsMyNodeAccessibleInline: React.FC = () => {
                 following error: <br />
                 <strong>{`${error}`}</strong>
               </p>
-              <p>
-                If the backend node cannot connect to your nodes, other peers
-                might not be able to connect and retrieve your content either.
-                This is the web3 equivalent of a{" "}
-                <em>"DNS address could not be found"</em> error.
-              </p>
-              <p>
-                Tips to fix this issue:
-                <ul>
-                  <li>Can you ping your node from the outside?</li>
-                  <li>
-                    Do you need{" "}
-                    <ExternalLink
-                      title="NAT Configuration"
-                      href="https://docs.ipfs.io/how-to/nat-configuration/"
-                    />
-                    ?
-                  </li>
-                </ul>
-              </p>
+              {data?.connectToPeerError &&
+              data?.connectToPeerError === "no addresses" ? (
+                <>
+                  <p>
+                    This multiaddresses doesn't containt a location, we only
+                    support address with location right now.
+                  </p>
+                  <ul>
+                    <li>
+                      Go to your terminal type <code>ipfs id</code>
+                    </li>
+                    <li>
+                      Find in the list the one address starting with{" "}
+                      <code>/ip4/....</code>
+                    </li>
+                  </ul>
+                </>
+              ) : (
+                <>
+                  <p>
+                    If the backend node cannot connect to your nodes, other
+                    peers might not be able to connect and retrieve your content
+                    either. This is the web3 equivalent of a{" "}
+                    <em>"DNS address could not be found"</em> error.
+                  </p>
+                  <p>
+                    Tips to fix this issue:
+                    <ul>
+                      <li>Can you ping your node from the outside?</li>
+                      <li>
+                        Do you need{" "}
+                        <ExternalLink
+                          title="NAT Configuration"
+                          href="https://docs.ipfs.io/how-to/nat-configuration/"
+                        />
+                        ?
+                      </li>
+                    </ul>
+                  </p>
+                </>
+              )}
             </div>
           </Message>
         )}
