@@ -10,7 +10,7 @@ export const WelcomePage: React.FC = () => {
           <div className="hero-body">
             <p className="title">PL Diagnose</p>
             <p className="subtitle">
-              Diagnose issues with the IPFS / libp2p Stack.
+              Diagnose issues with the IPFS, IPLD, and libp2p Stack.
             </p>
           </div>
         </section>
@@ -19,20 +19,22 @@ export const WelcomePage: React.FC = () => {
             <div className="tile is-ancestor">
               <div className="tile is-parent is-4">
                 <div className="tile is-child box">
-                  <h2 className="title is-3">I can't access my IPFS content</h2>
-                  <Link to="/diagnose/access-content">Go here.</Link>
+                  <h2 className="title is-3">IPFS Content Diagnostic</h2>
+                  <p>I can't access my IPFS content</p>
+                  <Link to="/diagnose/access-content">Diagnose</Link>
                 </div>
               </div>
               <div className="tile is-parent is-4">
                 <div className="is-child box">
-                  <h2 className="title is-3">I am looking for more tools</h2>
-                  <Link to="/toolbox">Go here.</Link>
+                  <h2 className="title is-3">Other Diagnostic Tools</h2>
+                  <p>I am looking for more tools</p>
+                  <Link to="/toolbox">More Tools</Link>
                 </div>
               </div>
               <div className="tile is-parent is-4">
                 <div className="is-child box">
                   <h2 className="title is-3">Contribute on Github</h2>
-                  <ExternalLink href={GITHUB_URL!} title="Go here." />
+                  <ExternalLink href={GITHUB_URL!} title="Go to /pl-diagnose" />
                 </div>
               </div>
             </div>
