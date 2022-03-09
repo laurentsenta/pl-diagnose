@@ -7,6 +7,11 @@ Check the live version on fleek: https://pl-diagnose.on.fleek.co/
 
 ## Usage
 
+### Setup
+```
+yarn install
+```
+
 ### Frontend
 
 ```
