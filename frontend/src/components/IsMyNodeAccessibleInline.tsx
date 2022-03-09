@@ -72,17 +72,15 @@ export const IsMyNodeAccessibleInline: React.FC = () => {
               {data?.connectToPeerError &&
               data?.connectToPeerError === "no addresses" ? (
                 <>
+                  <p>Please enter an IP address:</p>
                   <p>
-                    This multiaddress doens't have a location listed, please
-                    enter an IP address:
-                  </p>
-                  <p>
-                    Use the tool above to find your node's address,{" "}
+                    Use the tool above to find your content's ip address,{" "}
                     <strong>or:</strong>
                   </p>
                   <ol>
                     <li>
-                      Go to your terminal type <code>ipfs id</code>
+                      to test your own node's connectivity, go to your terminal
+                      type <code>ipfs id</code>
                     </li>
                     <li>
                       Find an address with the location in the list{" "}
