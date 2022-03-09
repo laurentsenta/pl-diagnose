@@ -77,14 +77,15 @@ const WhereDoIFindMyNetworkAddress: React.FC = () => {
   return (
     <ButtonWithModal title="Where do I find my network addresses?">
       <section className="content">
-        <h2 className="">Where do I find my multiaddr?</h2>
+        <h2 className="">Where do I find my network addresses?</h2>
         <ul>
           <li className="">
             <strong>Using This tool</strong>
             <ul>
               <li>
                 Run the "Is my content on the DHT?" test and click on any of the
-                provider's addresses
+                provider's addresses that list the IP version (not the{" "}
+                <code>/p2p/PeerID multiaddr</code>)
               </li>
               <li>
                 Run the "Is my node accessible?" test and click on any of the
@@ -103,13 +104,6 @@ const WhereDoIFindMyNetworkAddress: React.FC = () => {
                 (when using the default config settings)
               </li>
               <li>
-                If you want to test your peerID rather than a particular address
-                enter{" "}
-                <code>
-                  /p2p/{"{"}YourPeerID{"}"}
-                </code>
-              </li>
-              <li>
                 If you want to test a particular address then click the
                 "Advanced" dropdown to see the node's addresses
               </li>
@@ -118,13 +112,6 @@ const WhereDoIFindMyNetworkAddress: React.FC = () => {
           <li className="">
             <strong>Using the go-ipfs CLI</strong>
             <ul>
-              <li>
-                If you want to test your peerID rather than a particular address
-                run <code>ipfs id</code> and enter{" "}
-                <code>
-                  /p2p/{"{"}YourPeerID{"}"}
-                </code>
-              </li>
               <li>
                 If you want to test a particular address then choose an entry
                 from the list of addresses output by <code>ipfs id</code>
