@@ -85,31 +85,40 @@ const Content: React.FC<{
             Diagnose issues with your libp2p / ipfs stack.
           </h2>
           <p className="content">
-            When you cannot access your content via the IPFS network, this tool
-            will help you figure out what is happening and how to fix it.
+            This tool will help you diagnose why you cannot access content via
+            the IPFS network.
           </p>
         </div>
-      </section>
-      <section className="section">
         <div className="content">
           <p>
-            First, let's configure the server we are going to use to test
-            reachability.
+            <strong>What this Tools Can Check</strong>
           </p>
-          <p>
-            <strong>What is this?</strong>
-          </p>
-          <p>
-            The IPFS stack relies on peer-to-peer technologies. There is no
-            central source of truth, so it is likely that a piece of content
-            lives on a node that is not accessible by other members of the
-            network. It might work on your local, private network, but other
-            users might not be able to reach out to you.
-          </p>
-          <p>
-            This URL is the server that will be used to talk to the network. By
-            default it points to a server on the internet.
-          </p>
+          <ol>
+            <li>
+              Is a given piece of content, identified with a with a certain{" "}
+              <a href="http://docs.ipfs.io.ipns.localhost:8080/concepts/content-addressing/">
+                CID
+              </a>{" "}
+              available on the IPFS network?
+            </li>
+            <li>
+              Which{" "}
+              <a href="http://docs.ipfs.io.ipns.localhost:8080/concepts/glossary/#peer-id">
+                PeerIds
+              </a>{" "}
+              does the{" "}
+              <a href="http://docs.ipfs.io.ipns.localhost:8080/concepts/dht/#distributed-hash-tables-dhts">
+                DHT
+              </a>{" "}
+              list as hosts, and which network addresses or{" "}
+              <a href="http://multiformats.io.ipns.localhost:8080/multiaddr/">
+                Multiaddresses
+              </a>{" "}
+              are listed in the DHT for a given IPFS Node
+            </li>
+            <li>Is an IPFS node accessible by other peers</li>
+            <li>Is certain content available from an IPFS node</li>
+          </ol>
         </div>
         <div className="" style={{ maxWidth: "600px" }}>
           <BackendURLField />
@@ -126,12 +135,6 @@ const Content: React.FC<{
           </p>
           <p>
             <strong>What is this?</strong>
-          </p>
-          <p>
-            IPFS, through libp2p, provides an infrastructure for content routing
-            and peer routing. This is how a node discovers the address of other
-            nodes in the network. And this is also how a node find content on
-            the network.
           </p>
           <p>
             Enter your content's CID below. On submit, the backend server will
