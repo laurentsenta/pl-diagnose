@@ -8,6 +8,10 @@ import { IsMyNodeOnTheDHTInline } from "components/IsMyNodeOnTheDHTInline";
 import { IsMyNodeServingContentInline } from "components/IsMyNodeServingContentInline";
 import last from "lodash-es/last";
 import { useCallback, useEffect, useState } from "react";
+// @ts-ignore
+import bulmaCollapsible from "@creativebulma/bulma-collapsible";
+
+console.log(bulmaCollapsible);
 
 const WhereDoIFindMyMultiaddress: React.FC = () => {
   return (
