@@ -7,7 +7,7 @@ import { IsMyNodeAccessibleInline } from "components/IsMyNodeAccessibleInline";
 import { IsMyNodeOnTheDHTInline } from "components/IsMyNodeOnTheDHTInline";
 import { IsMyNodeServingContentInline } from "components/IsMyNodeServingContentInline";
 import last from "lodash-es/last";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const WhereDoIFindMyMultiaddress: React.FC = () => {
   return (
@@ -85,10 +85,12 @@ const Content: React.FC<{
             Diagnose issues with your libp2p / ipfs stack.
           </h2>
           <p className="content">
-            This tool will help you diagnose why you cannot access content via
-            the IPFS network.
+            This tool will help you diagnose why you cannot access your content
+            via the IPFS network.
           </p>
         </div>
+      </section>
+      <section className="section">
         <div className="content">
           <p>
             <strong>What These Tools Can Check</strong>
@@ -96,24 +98,28 @@ const Content: React.FC<{
           <ol>
             <li>
               Is a given piece of content, identified with a with a certain{" "}
-              <a href="http://docs.ipfs.io.ipns.localhost:8080/concepts/content-addressing/">
-                CID
-              </a>{" "}
+              <ExternalLink
+                href="https://docs.ipfs.io/concepts/content-addressing"
+                title="CID"
+              />{" "}
               available on the IPFS network, and which{" "}
-              <a href="http://docs.ipfs.io.ipns.localhost:8080/concepts/glossary/#peer-id">
-                PeerIds
-              </a>{" "}
+              <ExternalLink
+                href="https://docs.ipfs.io/concepts/glossary/#peer-id"
+                title="PeerIds"
+              />{" "}
               does the{" "}
-              <a href="http://docs.ipfs.io.ipns.localhost:8080/concepts/dht/#distributed-hash-tables-dhts">
-                DHT
-              </a>{" "}
+              <ExternalLink
+                href="https://docs.ipfs.io/concepts/dht"
+                title="DHT"
+              />{" "}
               list as hosts,?
             </li>
             <li>
               Which network addresses or{" "}
-              <a href="http://multiformats.io.ipns.localhost:8080/multiaddr/">
-                Multiaddresses
-              </a>{" "}
+              <ExternalLink
+                href="https://multiformats.io/multiaddr/"
+                title="Multiaddresses"
+              />{" "}
               are listed in the DHT for a given IPFS Node?
             </li>
             <li>Is an IPFS node accessible by other peers?</li>
@@ -126,11 +132,8 @@ const Content: React.FC<{
       </section>
       <section className="section">
         <TitleWithRef className="title is-3" id={1} setRef={setRef}>
-          1. Content Check
+          1. Is my content on the DHT?
         </TitleWithRef>
-        <div className="content">
-          <i> Is my content on the DHT?</i>
-        </div>
         <div className="content">
           <p>
             Before retrieving a piece of content, we need to make sure it is
@@ -154,14 +157,11 @@ const Content: React.FC<{
       </section>
       <section className="section">
         <TitleWithRef className="title is-3" id={2} setRef={setRef}>
-          2. Network Address Check
+          2. Is my peer in the DHT?
         </TitleWithRef>
         <div className="content">
-          <i> Is my node in the DHT?</i>
-        </div>
-        <div className="content">
           <p>
-            Enter your node's p2p address below. On submit, the backend server
+            Enter your node's multiaddress below. On submit, the backend server
             will try to find your node in the DHT.
           </p>
           <WhereDoIFindMyMultiaddress />
@@ -175,11 +175,8 @@ const Content: React.FC<{
       </section>
       <section className="section">
         <TitleWithRef className="title is-3" id={3} setRef={setRef}>
-          3. Node Access Check
+          3. Is my node accessible by other peers?
         </TitleWithRef>
-        <div className="content">
-          <i> Is my node accessible by other peers?</i>
-        </div>
         <div className="content">
           <p>
             If a node is advertising your content on the DHT we need to make
@@ -200,11 +197,8 @@ const Content: React.FC<{
       </section>
       <section className="section">
         <TitleWithRef className="title is-3" id={4} setRef={setRef}>
-          4. Node-Content Check
+          4. Is my node serving the content?
         </TitleWithRef>
-        <div className="content">
-          <i>Is my node serving the content?</i>
-        </div>
         <div className="content">
           <p>
             If you're node is accessible and the content is advertised on the
