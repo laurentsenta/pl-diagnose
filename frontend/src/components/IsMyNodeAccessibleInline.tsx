@@ -3,7 +3,6 @@ import { useCommonParams } from "data/useCommonParams";
 import { FormEventHandler, useCallback } from "react";
 import { useMutation } from "react-query";
 import { ClickablePeerAddrList } from "./ClickablePeerAddrList";
-import { ExternalLink } from "./ExternalLink";
 import { Message } from "./Message";
 import { ResultTitle } from "./ResultTitle";
 
@@ -72,15 +71,17 @@ export const IsMyNodeAccessibleInline: React.FC = () => {
               {data?.connectToPeerError &&
               data?.connectToPeerError === "no addresses" ? (
                 <>
-                  <p>Please enter an IP address:</p>
                   <p>
-                    Use the tool above to find your content's ip address,{" "}
+                    Please use a multiaddress that contains an IP or a DNS
+                    address
+                  </p>
+                  <p>
+                    Use the tool above to find your content's addresses,{" "}
                     <strong>or:</strong>
                   </p>
                   <ol>
                     <li>
-                      to test your own node's connectivity, go to your terminal
-                      type <code>ipfs id</code>
+                      Go to your terminal and type <code>ipfs id</code>
                     </li>
                     <li>
                       Find an address with the location in the list{" "}
@@ -91,11 +92,7 @@ export const IsMyNodeAccessibleInline: React.FC = () => {
                 </>
               ) : (
                 <>
-                  <p>
-                    This address might not be listed in the DHT, this is
-                    equivalent to a<em>"DNS address could not be found"</em>{" "}
-                    error.
-                  </p>
+                  <p>Our backend node couldn't reach this peer.</p>
                   <p>
                     Troubleshooting Steps:
                     <ul>

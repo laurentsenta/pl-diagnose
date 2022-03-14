@@ -7,16 +7,14 @@ export const ClickablePeerAddrList: React.FC<{
 }> = ({ ID, Addrs }) => {
   const { setAddr } = useCommonParams();
 
+  const onClick = () => {
+    setAddr(`/p2p/${ID}`);
+  };
+
   return (
     <>
       <p className="menu-label">Peer: {ID}</p>
-      {Addrs && Addrs.length === 0 && (
-        <p className="is-italic	has-text-grey">
-          It looks like this peer doesn't advertise their address. We don't know
-          how to connect to this peer
-        </p>
-      )}
-      {Addrs && Addrs.length > 0 && (
+      {Addrs && (
         <ul className="menu-list">
           {Addrs.map((a) => {
             const onClick = () => {
@@ -29,6 +27,9 @@ export const ClickablePeerAddrList: React.FC<{
               </li>
             );
           })}
+          <li>
+            <a onClick={onClick}>{`/p2p/${ID}`}</a>
+          </li>
         </ul>
       )}
     </>
