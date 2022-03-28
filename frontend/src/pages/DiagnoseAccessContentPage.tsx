@@ -73,6 +73,57 @@ const WhereDoIFindMyMultiaddress: React.FC = () => {
   );
 };
 
+const WhereDoIFindMyNetworkAddress: React.FC = () => {
+  return (
+    <ButtonWithModal title="Where do I find my network addresses?">
+      <section className="content">
+        <h2 className="">Where do I find my network addresses?</h2>
+        <ul>
+          <li className="">
+            <strong>Using This tool</strong>
+            <ul>
+              <li>
+                Run the "Is my content on the DHT?" test and click on any of the
+                provider's addresses that list the IP version (not the{" "}
+                <code>/p2p/PeerID multiaddr</code>)
+              </li>
+              <li>
+                Run the "Is my node accessible?" test and click on any of the
+                node advertised addresses
+              </li>
+            </ul>
+            <strong>Using IPFS Desktop or IPFS WebUI</strong>
+            <ul>
+              <li>
+                Open the IPFS WebUI "Status" page via the IPFS Desktop menu or
+                by visiting{" "}
+                <ExternalLink
+                  href="http://127.0.0.1:5001/webui"
+                  title="http://127.0.0.1:5001/webui"
+                />{" "}
+                (when using the default config settings)
+              </li>
+              <li>
+                If you want to test a particular address then click the
+                "Advanced" dropdown to see the node's addresses
+              </li>
+            </ul>
+          </li>
+          <li className="">
+            <strong>Using the go-ipfs CLI</strong>
+            <ul>
+              <li>
+                If you want to test a particular address then choose an entry
+                from the list of addresses output by <code>ipfs id</code>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </ButtonWithModal>
+  );
+};
+
 const Content: React.FC<{
   setRef: (id: number, e: HTMLElement | null) => void;
 }> = ({ setRef }) => {
@@ -164,7 +215,7 @@ const Content: React.FC<{
             Enter your node's multiaddress below. On submit, the backend server
             will try to find your node in the DHT.
           </p>
-          <WhereDoIFindMyMultiaddress />
+          <WhereDoIFindMyNetworkAddress />
         </div>
         <div className="" style={{ maxWidth: "600px" }}>
           <AddrField />

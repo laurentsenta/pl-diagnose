@@ -96,6 +96,12 @@ export const ToolboxPage: React.FC = () => {
                 title="mrd0ll4r/ipfs-tools"
               />
             </li>
+            <li>
+              <ExternalLink
+                href="https://cid.contact/"
+                title="CID Contact - An Interplanetary Network Index"
+              />
+            </li>
           </ul>
         </div>
         <div
