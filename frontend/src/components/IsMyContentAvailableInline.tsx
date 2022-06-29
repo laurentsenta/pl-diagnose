@@ -70,13 +70,18 @@ export const IsMyContentAvailableInline: React.FC = () => {
               <p>Our backend found {data.length} providers for this CID.</p>
             </Message>
             <div className="block mt-3">
-              <h3 className="title is-5">
-                Providers:
-                <Tooltip
-                  message="These are the providers that we found.&#10;Click on any of their addresses to test them."
-                />
-              </h3>
-              <div className="menu" style={{ maxWidth: "600px" }}>
+              <h3 className="title is-5">Providers:</h3>
+              <Tooltip
+                message="These are the providers that we found.&#10;Click on any of their addresses to test them."
+              />
+              <a data-action="collapse">
+                {" "}
+                <button className="is-3">Expand</button>{" "}
+              </a>
+              <div
+                className="menu is-collapsible is-active"
+                style={{ maxWidth: "600px" }}
+              >
                 {data.map((peer) => (
                   <ClickablePeerAddrList key={peer.ID} {...peer} />
                 ))}
