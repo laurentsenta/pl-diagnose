@@ -9,6 +9,15 @@ import "./style.scss";
 
 export const queryClient = new QueryClient();
 
+(async () => {
+  const { BrowserMetricsProvider } = await import('@ipfs-shipyard/ignite-metrics/browser-vanilla');
+  const telemetry = new BrowserMetricsProvider({ appKey: 'cd159bec282a4daeac0e295f308e8618448ec526' });
+
+  window.telemetry = telemetry;
+  window.removeMetricsConsent = () => telemetry.removeConsent(['minimal']);
+  window.addMetricsConsent = () => telemetry.addConsent(['minimal']);
+})();
+
 ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
