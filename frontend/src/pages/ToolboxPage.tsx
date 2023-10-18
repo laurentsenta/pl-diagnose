@@ -76,6 +76,15 @@ export const ToolboxPage: React.FC = () => {
               />
             </li>
           </ul>
+          <h3>IPLD / DAG tools</h3>
+          <ul>
+            <li>
+              <ExternalLink
+                href="https://github.com/ipld/go-fixtureplate"
+                title="ipld/go-fixtureplate"
+              />
+            </li>
+          </ul>
           <h3>Misc</h3>
           <ul>
             <li>
